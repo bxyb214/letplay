@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>5F64D315-8AAD-40CF-979B-6673DEBFF303</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Coding_iOS</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>0BE8B4916C79C0D6BC415A5C19AC33B37D62A706</key>
+		<string>git://git.coding.net/bluishoul/CodingAppWebviewTemplate.git</string>
+		<key>9F3660E5AC46AAE96CC141F90EBB3A671D67F2C2</key>
+		<string>https://bitbucket.org/jeremyxu/lets-play.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Coding_iOS.xcworkspace</string>
+
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/jeremyxu/lets-play.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9F3660E5AC46AAE96CC141F90EBB3A671D67F2C2</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9F3660E5AC46AAE96CC141F90EBB3A671D67F2C2</string>
+			<key>IDESourceControlWCCName</key>
+			<string>lets-play</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>0BE8B4916C79C0D6BC415A5C19AC33B37D62A706</string>
+			<key>IDESourceControlWCCName</key>
+			<string>webview</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,2298 @@
+  [1m[36m (11.9ms)[0m  [1mCREATE DATABASE `ibm_demo_development` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`[0m
+  [1m[36m (44.4ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (22.0ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations`  ON `schema_migrations` (`version`) 
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateActivities (20150528134708)
+  [1m[35m (12.6ms)[0m  CREATE TABLE `activities` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `description` text, `start_time` datetime, `created_time` datetime, `updated_time` datetime, `max_number` int(11), `image_url` varchar(255), `location_longitude` decimal, `location_latitude` decimal, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150528134708')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (2.5ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+
+
+Started GET "/activities" for ::1 at 2015-05-28 21:49:37 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#index as HTML
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 4ms (Views: 1.1ms | ActiveRecord: 1.4ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateUsers (20150528144554)
+  [1m[35m (10.7ms)[0m  CREATE TABLE `users` (`id` int(11) auto_increment PRIMARY KEY, `name` varchar(255), `baby_name` varchar(255), `baby_age` int(11), `image_url` varchar(255), `password` varchar(255), `email` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.8ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150528144554')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (4.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddFieldsToActivity (20150529044628)
+  [1m[35m (39.3ms)[0m  ALTER TABLE `activities` ADD `title` varchar(255)
+  [1m[36m (20.7ms)[0m  [1mALTER TABLE `activities` ADD `sponsor_id` int(11)[0m
+  [1m[35m (20.7ms)[0m  ALTER TABLE `activities` ADD `acceptable` tinyint(1)
+  [1m[36m (16.7ms)[0m  [1mALTER TABLE `activities` ADD `location` varchar(255)[0m
+  [1m[35m (17.7ms)[0m  ALTER TABLE `activities` ADD `end_time` datetime
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.5ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529044628')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (2.3ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to RemoveNameFromActivity (20150529045742)
+  [1m[35m (17.3ms)[0m  ALTER TABLE `activities` DROP `name`
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529045742')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('transform magnetic paradigms', 'Id odio in voluptatibus temporibus ut. Illum repellendus harum maiores exercitationem ut ut. Voluptatem a voluptate. Numquam corporis perferendis enim eum quae voluptatum.', '2015-05-28 20:14:00', '2015-05-28 09:02:14', '2015-05-16 13:05:37', '2015-05-27 13:11:48', 8, 'http://robohash.org/laboriosamveritatisexpedita.png?size=300x300', 'Jeremy Canyon', 59, 86, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('evolve best-of-breed infrastructures', 'Dolor impedit vitae aliquam modi possimus et eos. Nihil deserunt molestiae. A accusamus distinctio et.', '2015-05-28 23:50:50', '2015-05-28 08:28:55', '2015-05-21 10:40:10', '2015-05-25 10:30:10', 5, 'http://robohash.org/idsaepeporro.png?size=300x300', 'Freddie Flats', 4, 33, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('deploy seamless e-markets', 'Est illo dolore labore ratione. Laudantium itaque tempore ea et fugiat enim. Magni consequatur quis molestias minus quae maxime enim. Quo occaecati repellendus reprehenderit temporibus.', '2015-05-29 12:29:58', '2015-05-27 10:29:24', '2015-05-23 10:13:26', '2015-05-28 11:32:57', 4, 'http://robohash.org/laudantiumadvero.png?size=300x300', 'Yundt Estates', 81, 50, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('cultivate global e-tailers', 'Enim rem ut non. Quo distinctio sunt iure.', '2015-05-27 07:50:14', '2015-05-27 23:09:21', '2015-05-19 10:02:01', '2015-05-27 12:42:09', 8, 'http://robohash.org/rerumconsequaturminima.png?size=300x300', 'Collins Flats', 90, 3, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('grow dot-com niches', 'Ab praesentium dolore nihil consequatur sit. Qui eveniet esse cupiditate odio repellendus dolor est. Veniam magnam possimus quo exercitationem quam optio. Sunt facilis iure aut quo possimus.', '2015-05-29 14:19:05', '2015-05-27 02:51:18', '2015-05-17 12:16:50', '2015-05-28 11:47:39', 6, 'http://robohash.org/facilisdolorut.png?size=300x300', 'Johns Keys', 0, 6, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('revolutionize front-end networks', 'Est voluptatem rerum pariatur ratione. Aut eum et velit quae sapiente autem. Quo officia illo qui numquam non omnis.', '2015-05-27 11:30:42', '2015-05-27 13:29:24', '2015-05-19 10:33:45', '2015-05-27 12:27:34', 2, 'http://robohash.org/voluptasatqueaut.png?size=300x300', 'Jayson Burgs', 13, 86, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('incubate ubiquitous mindshare', 'In harum dolorum voluptas est magnam sed quia. Minus eum iusto id et et.', '2015-05-28 21:14:57', '2015-05-26 20:41:01', '2015-05-25 11:41:46', '2015-05-27 10:43:44', 1, 'http://robohash.org/enimtemporareiciendis.png?size=300x300', 'Danika Road', 63, 43, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('incubate frictionless markets', 'Tempore voluptas sint ea. Delectus incidunt ipsa asperiores odit ratione voluptatibus maxime. Architecto dolorum officia aut deleniti ab adipisci.', '2015-05-27 02:39:55', '2015-05-28 15:13:31', '2015-05-27 12:26:02', '2015-05-28 13:04:24', 7, 'http://robohash.org/etadnihil.png?size=300x300', 'Christiansen Manor', 35, 84, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('revolutionize compelling interfaces', 'Dicta laborum iure magnam est non asperiores. Repudiandae nisi est est animi ea dolore. Est quo ut quas placeat id.', '2015-05-27 20:53:35', '2015-05-27 23:21:03', '2015-05-26 13:25:21', '2015-05-26 11:42:44', 9, 'http://robohash.org/quiinfacilis.png?size=300x300', 'Flo Unions', 9, 65, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `sponsor_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('optimize back-end partnerships', 'Quibusdam dolorum nam fugit omnis magni. Aspernatur est et temporibus placeat ab. Molestiae aspernatur placeat. Numquam ut dolorem eum eligendi.', '2015-05-26 23:36:47', '2015-05-27 11:52:32', '2015-05-22 11:29:14', '2015-05-25 10:20:59', 5, 'http://robohash.org/eaquererumsunt.png?size=300x300', 'Tiana Cove', 94, 38, 1, 1, '2015-05-29 05:30:54', '2015-05-29 05:30:54')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+
+
+Started GET "/" for ::1 at 2015-05-29 13:31:08 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/templates/rails/welcome/index.html.erb (1.2ms)
+Completed 200 OK in 6ms (Views: 5.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/activities" for ::1 at 2015-05-29 13:31:10 +0800
+Processing by ActivitiesController#index as HTML
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 17ms (Views: 13.5ms | ActiveRecord: 1.9ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddFieldsToUser (20150529054157)
+  [1m[35m (21.6ms)[0m  ALTER TABLE `users` ADD `avatar` varchar(255)
+  [1m[36m (14.8ms)[0m  [1mALTER TABLE `users` ADD `global_key` varchar(255)[0m
+  [1m[35m (16.1ms)[0m  ALTER TABLE `users` ADD `path` varchar(255)
+  [1m[36m (13.6ms)[0m  [1mALTER TABLE `users` ADD `slogan` varchar(255)[0m
+  [1m[35m (16.4ms)[0m  ALTER TABLE `users` ADD `baby_birthday` date
+  [1m[36m (16.2ms)[0m  [1mALTER TABLE `users` ADD `baby_hobby` varchar(255)[0m
+  [1m[35m (17.0ms)[0m  ALTER TABLE `users` ADD `baby_school` varchar(255)
+  [1m[36m (15.8ms)[0m  [1mALTER TABLE `users` ADD `sex` int(11)[0m
+  [1m[35m (17.4ms)[0m  ALTER TABLE `users` ADD `baby_sex` int(11)
+  [1m[36m (16.5ms)[0m  [1mALTER TABLE `users` ADD `introduction` varchar(255)[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20150529054157')[0m
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.2ms)[0m  SELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+
+  [1m[36m (0.1ms)[0m  [1mSHOW CREATE TABLE `activities`[0m
+  [1m[35m (0.2ms)[0m  SELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+
+  [1m[36m (0.1ms)[0m  [1mSHOW CREATE TABLE `users`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to RemoveImageUrlFromUser (20150529054617)
+  [1m[35m (20.4ms)[0m  ALTER TABLE `users` DROP `image_url`
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529054617')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+
+
+Started GET "/" for ::1 at 2015-05-29 13:46:38 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/templates/rails/welcome/index.html.erb (0.0ms)
+Completed 200 OK in 1ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2015-05-29 13:46:38 +0800
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/templates/rails/welcome/index.html.erb (0.0ms)
+Completed 200 OK in 1ms (Views: 0.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/apple-touch-icon-precomposed.png" for ::1 at 2015-05-29 13:46:38 +0800
+
+ActionController::RoutingError (No route matches [GET] "/apple-touch-icon-precomposed.png"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (6.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (30.1ms)
+
+
+Started GET "/apple-touch-icon.png" for ::1 at 2015-05-29 13:46:38 +0800
+
+ActionController::RoutingError (No route matches [GET] "/apple-touch-icon.png"):
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:21:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (0.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (15.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to RemoveSponsorIdFromUser (20150529055925)
+  [1m[35m (0.3ms)[0m  ALTER TABLE `users` DROP `sponsor_id`
+Mysql2::Error: Can't DROP 'sponsor_id'; check that column/key exists: ALTER TABLE `users` DROP `sponsor_id`
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to RemoveSponsorIdFromUser (20150529055925)
+  [1m[35m (15.5ms)[0m  ALTER TABLE `activities` DROP `sponsor_id`
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529055925')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddSponsorIdToActivity (20150529060349)
+  [1m[35m (15.5ms)[0m  ALTER TABLE `activities` ADD `user_id` int(11)
+  [1m[36m (13.7ms)[0m  [1mCREATE  INDEX `index_activities_on_user_id`  ON `activities` (`user_id`) [0m
+  [1m[35m (16.0ms)[0m  ALTER TABLE `activities` ADD CONSTRAINT `fk_rails_7e11bb717f`
+FOREIGN KEY (`user_id`)
+  REFERENCES `users` (`id`)
+
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529060349')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+
+
+Started GET "/" for ::1 at 2015-05-29 14:14:29 +0800
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Library/Ruby/Gems/2.0.0/gems/railties-4.2.1/lib/rails/templates/rails/welcome/index.html.erb (0.1ms)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/activities" for ::1 at 2015-05-29 14:14:31 +0800
+Processing by ActivitiesController#index as HTML
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 200 OK in 47ms (Views: 41.3ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/activities" for ::1 at 2015-05-29 14:14:49 +0800
+Processing by ActivitiesController#create as */*
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:57:in `activity_params'
+  app/controllers/activities_controller.rb:21:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.2ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (17.9ms)
+
+
+Started GET "/activities" for ::1 at 2015-05-29 14:14:58 +0800
+Processing by ActivitiesController#index as */*
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 5ms (Views: 4.0ms | ActiveRecord: 0.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.9ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 1
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 2[0m
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 3
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 4[0m
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 5
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 6[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 7
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 8[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 9
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 10[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Jeramie Schowalter V', 'malinda_satterfield@mccullough.com', 'Priscilla', 8, '111111', 'http://robohash.org/atoditfacere.png?size=300x300', '', '', '', '2015-05-29', 'Grocery', 'Lake Theresa', 2, 1, 'Delectus ipsa expedita nisi autem cumque. Nam sit consectetur omnis quas maiores. Reprehenderit eum laudantium qui nulla fugiat.', '2015-05-29 06:46:52', '2015-05-29 06:46:52')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Alec Kuhic', 'rebeka@raynor.info', 'Terrence', 2, '111111', 'http://robohash.org/modiarchitectoeos.png?size=300x300', '', '', '', '2015-05-27', 'Clothing', 'Estevanland', 1, 1, 'Et alias qui repellat incidunt. Maiores laudantium consequatur deleniti aut. Facilis occaecati ullam tempore nostrum nihil suscipit aspernatur.', '2015-05-29 06:46:52', '2015-05-29 06:46:52')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Nicholaus Rolfson', 'grant@kilback.net', 'Elenor', 7, '111111', 'http://robohash.org/temporafacilisillo.png?size=300x300', '', '', '', '2015-05-27', 'Sports', 'Lake Tyreeburgh', 1, 1, 'Voluptatem est odio. Soluta delectus necessitatibus atque accusamus sed non earum. Provident consectetur vel accusantium. Eos voluptatibus qui ut.', '2015-05-29 06:46:52', '2015-05-29 06:46:52')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 1[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `users` WHERE `users`.`id` = 2
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 3[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Joshuah Kovacek', 'jedidiah.purdy@keelingziemann.info', 'Dale', 6, '111111', 'http://robohash.org/abfugaquae.png?size=300x300', '', '', '', '2015-05-29', 'Electronics, Garden & Health', 'Lake Lela', 2, 2, 'Laudantium temporibus laboriosam quos magni ad accusamus. Quae ipsa non ut distinctio reiciendis. Est aut corporis enim nobis neque placeat. Quae quia aperiam.', '2015-05-29 06:47:33', '2015-05-29 06:47:33')
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Taylor Stracke', 'jeff_cremin@sauer.biz', 'Watson', 2, '111111', 'http://robohash.org/autquisquamlaudantium.png?size=300x300', '', '', '', '2015-05-29', 'Industrial & Computers', 'North Georgianaview', 2, 1, 'Officiis non atque et ut consequatur corporis. Voluptas veritatis iste rem ipsa. Nesciunt quaerat non enim. Deserunt reiciendis error dolor corrupti recusandae incidunt.', '2015-05-29 06:47:33', '2015-05-29 06:47:33')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Emmitt Emard MD', 'antwan.streich@rath.org', 'Vernie', 2, '111111', 'http://robohash.org/debitiseiusfugiat.png?size=300x300', '', '', '', '2015-05-29', 'Outdoors', 'New Brianne', 2, 1, 'Quas asperiores sit maiores ut ad quibusdam. In voluptatem molestias eveniet qui. Quo dicta voluptatem qui eos optio ut. Nam magni iste laborum voluptatem.', '2015-05-29 06:47:33', '2015-05-29 06:47:33')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 4[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `users` WHERE `users`.`id` = 5
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 6[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Tatyana Hackett', 'dane.keeling@kilback.info', 'Kayleigh', 8, '111111', 'http://robohash.org/nonsimiliquevelit.png?size=300x300', '', '', '', '2015-05-27', 'Clothing & Tools', 'West Raoulchester', 2, 1, 'Totam quos modi aspernatur. Sunt rem excepturi dolorem. Maxime qui nihil at fugiat molestiae pariatur ad.', '2015-05-29 06:47:51', '2015-05-29 06:47:51')
+  [1m[36m (1.0ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Mrs. Caleb Swaniawski', 'kendra@rueckerrenner.net', 'Pascale', 8, '111111', 'http://robohash.org/maximevoluptaseaque.png?size=300x300', '', '', '', '2015-05-28', 'Tools & Games', 'Cordiastad', 1, 1, 'Quas sed libero. Aperiam molestias quod. Quasi harum vitae est perferendis maiores voluptas.', '2015-05-29 06:47:51', '2015-05-29 06:47:51')[0m
+  [1m[35m (0.8ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Jay Russel', 'benedict_leuschke@moorevolkman.org', 'Skylar', 2, '111111', 'http://robohash.org/officiisanostrum.png?size=300x300', '', '', '', '2015-05-29', 'Outdoors & Movies', 'South Jeraldstad', 2, 1, 'Eius dignissimos maxime tempore. Aut laborum dolores in rerum officiis. Repudiandae ducimus blanditiis esse. Ipsam voluptas in occaecati aut.', '2015-05-29 06:47:51', '2015-05-29 06:47:51')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 7[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `users` WHERE `users`.`id` = 8
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 9[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Jacquelyn Effertz', 'lenna@klein.name', 'Arielle', 2, '111111', 'http://robohash.org/utfacilisenim.png?size=300x300', '', '', '', '2015-05-29', 'Automotive & Home', 'New Stephanie', 2, 2, 'Facere est necessitatibus consequuntur quasi. Unde quisquam blanditiis quis laborum atque delectus eius. Mollitia dolorum et quae et aut placeat aliquam. Magni repudiandae eos maiores ut.', '2015-05-29 06:49:45', '2015-05-29 06:49:45')
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('revolutionize robust networks', 'Non explicabo illo fugit eum dolor. Quo rerum et molestiae maxime. Laudantium unde vero ipsam totam molestias blanditiis at. Numquam distinctio qui aut aut.', '2015-05-28 12:42:01', '2015-05-28 18:15:15', '2015-05-22 09:38:18', '2015-05-28 12:45:02', 5, 'http://robohash.org/excepturipossimusnumquam.png?size=300x300', 'Heathcote Place', 140, 70, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('orchestrate scalable markets', 'Optio maiores consectetur amet et et dolores consequatur. Temporibus et nesciunt sit. Quia nobis vel.', '2015-05-27 22:03:00', '2015-05-27 08:28:56', '2015-05-19 11:28:25', '2015-05-27 13:32:46', 2, 'http://robohash.org/quidemtemporibusaut.png?size=300x300', 'Rosamond Springs', 171, 73, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('exploit user-centric synergies', 'Ipsum deleniti vero odio animi suscipit quo autem. Libero autem quis architecto ut suscipit est aut.', '2015-05-26 17:50:21', '2015-05-28 15:00:39', '2015-05-22 12:47:12', '2015-05-28 13:54:37', 7, 'http://robohash.org/veromaximesunt.png?size=300x300', 'Wendy Shores', 36, 82, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('facilitate visionary interfaces', 'Voluptatum ut quos voluptas. Architecto omnis aliquam neque vero quia. Et dolor harum qui.', '2015-05-29 13:59:58', '2015-05-28 22:01:07', '2015-05-21 09:38:25', '2015-05-26 10:10:51', 3, 'http://robohash.org/etvoluptateatque.png?size=300x300', 'Ruby Ramp', -99, 14, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('streamline one-to-one convergence', 'Amet autem rerum consequatur. Nulla veritatis consectetur nam facilis. Sit aut veritatis. Qui quis cum rerum itaque quisquam illum perspiciatis.', '2015-05-28 02:48:53', '2015-05-29 15:30:39', '2015-05-24 13:54:43', '2015-05-25 13:56:06', 8, 'http://robohash.org/aliquamnostrumdoloribus.png?size=300x300', 'Gerlach Square', -89, 49, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('evolve real-time vortals', 'Eum sapiente aut est earum sint atque et. Perferendis et similique culpa repudiandae enim est dolorem. Deserunt sunt nihil quo alias aut. Fugiat corrupti magni quia.', '2015-05-28 12:53:41', '2015-05-29 12:20:51', '2015-05-17 13:24:41', '2015-05-27 10:03:54', 8, 'http://robohash.org/doloremquemolestiaeillum.png?size=300x300', 'Effertz Overpass', 27, 32, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('integrate innovative synergies', 'Nostrum dolore tempora et. Vel et nulla. Et est excepturi odit nisi illum velit. Nulla alias nihil voluptatem placeat mollitia.', '2015-05-28 13:54:52', '2015-05-29 08:43:21', '2015-05-19 13:52:16', '2015-05-28 09:05:53', 9, 'http://robohash.org/errorvoluptatesducimus.png?size=300x300', 'Royce Glen', -120, -79, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('recontextualize integrated channels', 'Earum veritatis recusandae nulla. Ut sequi impedit consequatur mollitia et. Adipisci pariatur ut.', '2015-05-27 10:53:09', '2015-05-27 17:28:38', '2015-05-26 13:51:24', '2015-05-28 11:32:59', 4, 'http://robohash.org/autemenimdolorem.png?size=300x300', 'Donnelly Dale', -101, 48, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('disintermediate integrated partnerships', 'Animi rerum dolore nobis qui. Quam non officia provident dolores. Cum similique nemo consequatur a natus nam sit. Quidem est enim doloribus.', '2015-05-28 08:31:32', '2015-05-28 11:33:47', '2015-05-21 12:39:53', '2015-05-26 11:52:27', 1, 'http://robohash.org/maioressitquod.png?size=300x300', 'Wilderman Villages', 83, 59, 10, 1, '2015-05-29 06:49:45', '2015-05-29 06:49:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('innovate revolutionary platforms', 'Perferendis laborum quod omnis dolorum est non recusandae. Qui sapiente aperiam debitis at ipsum sit.', '2015-05-27 23:24:26', '2015-05-28 22:13:01', '2015-05-25 11:04:40', '2015-05-27 11:31:47', 4, 'http://robohash.org/utquiaqui.png?size=300x300', 'Keshawn Turnpike', 132, -60, 10, 1, '2015-05-29 06:49:46', '2015-05-29 06:49:46')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Alene Morar', 'marc@grantpouros.info', 'Kelsi', 2, '111111', 'http://robohash.org/undeaspernaturquas.png?size=300x300', '', '', '', '2015-05-29', 'Sports', 'Lynchborough', 2, 2, 'Veritatis iste praesentium. Assumenda dignissimos atque nihil adipisci.', '2015-05-29 06:49:46', '2015-05-29 06:49:46')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Mikayla Casper', 'abner@kihn.biz', 'Mark', 4, '111111', 'http://robohash.org/consequunturofficiaquidem.png?size=300x300', '', '', '', '2015-05-28', 'Kids', 'North Pascale', 1, 2, 'Blanditiis id aliquam ut. Quis temporibus natus.', '2015-05-29 06:49:46', '2015-05-29 06:49:46')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/activities" for ::1 at 2015-05-29 14:51:10 +0800
+Processing by ActivitiesController#index as */*
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 200 OK in 5ms (Views: 4.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/10" for ::1 at 2015-05-29 14:52:39 +0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"10"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 10 LIMIT 1
+Completed 200 OK in 25ms (Views: 0.7ms | ActiveRecord: 2.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 11
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 12[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 13
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 14[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 15
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 16[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 17
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 18[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 19
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 20[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 10[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `users` WHERE `users`.`id` = 11
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 12[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Taylor Beatty DVM', 'geovanny_zieme@thompsonmayer.com', 'Adolphus', 2, '111111', 'http://robohash.org/perspiciatissolutaet.png?size=300x300', '', '', '', '2015-05-27', 'Shoes & Industrial', 'Port Camdenborough', 1, 2, 'Aspernatur veritatis sed doloribus voluptas. Consequatur similique deserunt voluptas ut.', '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('synthesize cutting-edge web-readiness', 'Eos facere est et nobis. Ab aut ex. Sed sint provident modi ullam quis.', '2015-05-28 12:27:12', '2015-05-29 09:24:51', '2015-05-27 09:34:00', '2015-05-26 09:54:51', 6, 'http://robohash.org/ipsamoditvoluptatum.png?size=300x300', 'Sadie Station', 170, -51, 13, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('whiteboard sticky infomediaries', 'Praesentium incidunt quia repellat ea aperiam dolor. Reiciendis et et magnam temporibus sint aut maiores. Voluptatem et omnis non qui. Voluptas mollitia asperiores ducimus numquam consequatur vero excepturi.', '2015-05-27 23:54:36', '2015-05-27 10:36:05', '2015-05-17 09:17:03', '2015-05-25 11:29:08', 9, 'http://robohash.org/corruptifugavero.png?size=300x300', 'Amiya Ridges', 20, -68, 13, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('repurpose wireless deliverables', 'Quod dicta et. Aperiam ipsum modi qui dolore nobis sed sit. Necessitatibus quia distinctio blanditiis repellat reprehenderit.', '2015-05-26 22:57:38', '2015-05-27 22:10:56', '2015-05-26 12:20:59', '2015-05-25 11:13:30', 1, 'http://robohash.org/ipsacumsed.png?size=300x300', 'Parker Land', -100, -18, 13, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('utilize enterprise initiatives', 'Unde vel sed totam dicta non. Autem omnis est expedita aliquid consequatur adipisci rem. Et et tempore asperiores quia ipsa quas. Deleniti voluptas eveniet saepe ut nihil.', '2015-05-27 07:58:46', '2015-05-29 04:55:15', '2015-05-22 13:38:23', '2015-05-25 09:44:25', 7, 'http://robohash.org/exercitationemasperioresquaerat.png?size=300x300', 'Greenholt Lane', 84, -63, 13, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Cary West', 'rickey_rice@bailey.org', 'Zachary', 4, '111111', 'http://robohash.org/temporenumquamfugit.png?size=300x300', '', '', '', '2015-05-28', 'Jewelery', 'Ursulaside', 2, 2, 'Eligendi veniam ullam enim rerum sint nulla itaque. Eveniet eum ad est alias. Voluptatem fugiat quo et et.', '2015-05-29 07:45:45', '2015-05-29 07:45:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('scale integrated partnerships', 'Recusandae ut delectus perspiciatis ut. Rerum sed placeat eaque et. Quas rem unde. Quae iste veritatis non omnis ut fugiat qui.', '2015-05-28 02:23:07', '2015-05-29 06:38:54', '2015-05-18 09:39:55', '2015-05-26 13:30:29', 1, 'http://robohash.org/rerummollitianulla.png?size=300x300', 'Mallory Branch', 56, 26, 14, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('reinvent ubiquitous communities', 'Eum voluptas perspiciatis alias minima. Distinctio perferendis qui sed. Non qui pariatur et. Cum qui dolore.', '2015-05-29 07:16:28', '2015-05-28 11:56:55', '2015-05-25 10:48:52', '2015-05-28 12:10:25', 2, 'http://robohash.org/cupiditatedolorequia.png?size=300x300', 'Cormier Vista', 48, 31, 14, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('engage next-generation convergence', 'Ab eos nobis voluptates provident a ut. Ipsa expedita id voluptatibus ut deleniti dicta id. Commodi voluptatem sit deleniti laborum vel error. Veritatis quae voluptatem voluptates deserunt non.', '2015-05-29 15:04:03', '2015-05-29 11:22:04', '2015-05-15 13:39:27', '2015-05-28 10:33:47', 7, 'http://robohash.org/numquamquivoluptatem.png?size=300x300', 'Will Meadow', -154, -47, 14, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('transition bricks-and-clicks schemas', 'A nihil dolorum occaecati cumque nam ratione qui. Maxime voluptatem sed. Commodi amet ut id nihil. Quis dolorem rerum aut sequi.', '2015-05-27 04:11:24', '2015-05-27 23:51:03', '2015-05-20 12:46:49', '2015-05-26 10:11:40', 3, 'http://robohash.org/quietmaxime.png?size=300x300', 'Sean Corners', 139, 35, 14, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Henri Olson', 'vicky.hickle@feesthills.info', 'Carson', 7, '111111', 'http://robohash.org/cupiditateomnisvoluptatem.png?size=300x300', '', '', '', '2015-05-27', 'Toys, Baby & Grocery', 'Mitcheltown', 1, 1, 'Doloremque nemo itaque ratione. Ut commodi laborum eius aut accusamus.', '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('matrix revolutionary functionalities', 'Quis sed eum soluta dolorem ad quidem. Reiciendis consequatur unde earum ad. Omnis ut quia ullam autem qui.', '2015-05-28 13:16:29', '2015-05-26 21:26:07', '2015-05-19 13:36:18', '2015-05-28 13:33:00', 8, 'http://robohash.org/etetcommodi.png?size=300x300', 'Dare Courts', 128, 62, 15, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('target e-business paradigms', 'Maiores debitis qui aspernatur quasi velit rem id. Est sed cum quam. Explicabo perspiciatis et aliquid veniam porro ducimus.', '2015-05-26 23:20:47', '2015-05-27 08:32:56', '2015-05-19 11:35:07', '2015-05-25 11:55:41', 8, 'http://robohash.org/quiindoloremque.png?size=300x300', 'DuBuque Extension', 174, -73, 15, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('productize web-enabled solutions', 'Exercitationem illo voluptates eveniet. Ea sit perferendis est et.', '2015-05-29 01:50:56', '2015-05-27 23:36:37', '2015-05-28 09:12:14', '2015-05-26 12:10:26', 7, 'http://robohash.org/occaecatisuntmagni.png?size=300x300', 'Merle Coves', -31, 69, 15, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `user_id`, `acceptable`, `created_at`, `updated_at`) VALUES ('implement cutting-edge action-items', 'Facere illum nam in et laboriosam. Ut neque corporis qui labore. A porro sequi adipisci magnam exercitationem.', '2015-05-28 11:49:36', '2015-05-28 09:02:13', '2015-05-17 09:04:28', '2015-05-28 10:55:28', 1, 'http://robohash.org/aliquidrerumad.png?size=300x300', 'Eldridge Stream', 116, -10, 15, 1, '2015-05-29 07:45:45', '2015-05-29 07:45:45')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/activities/filter?user=13&sponsor=13" for ::1 at 2015-05-29 15:48:52 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#show as */*
+  Parameters: {"user"=>"13", "sponsor"=>"13", "id"=>"filter"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 0 LIMIT 1
+Completed 404 Not Found in 11ms (ActiveRecord: 2.1ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Activity with 'id'=filter):
+  app/controllers/activities_controller.rb:69:in `set_activity'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (20.1ms)
+
+
+Started GET "/activities/filter?user=13&sponsor=13" for ::1 at 2015-05-29 15:49:24 +0800
+Processing by ActivitiesController#show as HTML
+  Parameters: {"user"=>"13", "sponsor"=>"13", "id"=>"filter"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 0 LIMIT 1[0m
+Completed 404 Not Found in 1ms (ActiveRecord: 0.2ms)
+
+ActiveRecord::RecordNotFound (Couldn't find Activity with 'id'=filter):
+  app/controllers/activities_controller.rb:69:in `set_activity'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (14.1ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13" for ::1 at 2015-05-29 15:53:32 +0800
+Processing by ActivitiesController#filter as HTML
+  Parameters: {"user"=>"13", "sponsor"=>"13"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities` WHERE (user_id = '13')
+Completed 200 OK in 15ms (Views: 11.6ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13" for ::1 at 2015-05-29 15:53:43 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "sponsor"=>"13"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities` WHERE (user_id = '13')[0m
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.3ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateParticipates (20150529060450)
+  [1m[35m (9.7ms)[0m  CREATE TABLE `participates` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `active_id` int(11), `created_time` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_participates_on_user_id`  (`user_id`) ,  INDEX `index_participates_on_active_id`  (`active_id`) ) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529060450')
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'participates'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `participates`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 21
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 22[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 23
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 24[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 25
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 26[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 27
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 28[0m
+  [1m[35m (0.5ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 29
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 30[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 31
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.0ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 32[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 13[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `users` WHERE `users`.`id` = 14
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 15[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Mrs. Darrell Fritsch', 'devan_stroman@shanahanstroman.com', 'Jesse', 5, '111111', 'http://robohash.org/repellatlaborebeatae.png?size=300x300', '', '', '', '2015-05-27', 'Beauty, Tools & Computers', 'Brucefort', 1, 2, 'Eaque voluptatum ea quidem fuga vitae dolore. Quis voluptates delectus quia ut.', '2015-05-29 08:32:46', '2015-05-29 08:32:46')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+Migrating to CreateParticipates (20150529060450)
+  [1m[36m (2.3ms)[0m  [1mDROP TABLE `participates`[0m
+  [1m[35mSQL (0.4ms)[0m  DELETE FROM `schema_migrations` WHERE `schema_migrations`.`version` = '20150529060450'
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35m (0.1ms)[0m  SELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+
+  [1m[36m (0.1ms)[0m  [1mSHOW CREATE TABLE `activities`[0m
+  [1m[35m (0.1ms)[0m  SELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+
+  [1m[36m (0.1ms)[0m  [1mSHOW CREATE TABLE `users`[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to CreateParticipates (20150529060450)
+  [1m[35m (8.9ms)[0m  CREATE TABLE `participates` (`id` int(11) auto_increment PRIMARY KEY, `user_id` int(11), `activity_id` int(11), `created_time` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL,  INDEX `index_participates_on_user_id`  (`user_id`) ,  INDEX `index_participates_on_activity_id`  (`activity_id`) ) ENGINE=InnoDB
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529060450')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.2ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'participates'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `participates`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 16[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Stanford Schuster', 'wilson_murphy@marquardtprohaska.info', 'Anibal', 2, '111111', 'http://robohash.org/necessitatibusveritatisqui.png?size=300x300', '', '', '', '2015-05-27', 'Baby & Beauty', 'Marksport', 2, 2, 'Voluptatem quas asperiores est sit expedita. Nulla fuga ipsa rerum tempore. Necessitatibus provident aut.', '2015-05-29 08:36:25', '2015-05-29 08:36:25')
+  [1m[36m (0.8ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 17[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Amelie Johnston III', 'leola@hodkiewicz.name', 'Celia', 4, '111111', 'http://robohash.org/utomnisharum.png?size=300x300', '', '', '', '2015-05-29', 'Shoes, Industrial & Movies', 'Merlinburgh', 2, 2, 'Ex velit tempore quibusdam qui aut omnis aut. Veritatis rem enim modi incidunt aliquam nulla aliquid.', '2015-05-29 08:38:02', '2015-05-29 08:38:02')
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 18[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Celia Kautzer', 'murl_crona@damore.com', 'Ayla', 5, '111111', 'http://robohash.org/estquiadolore.png?size=300x300', '', '', '', '2015-05-29', 'Beauty', 'Handton', 1, 1, 'Laboriosam magni excepturi. Eos ut consequatur dolor reprehenderit.', '2015-05-29 08:38:24', '2015-05-29 08:38:24')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('synthesize enterprise eyeballs', 'Magni sit laborum. Molestiae explicabo omnis minima omnis provident dolor quos.', '2015-05-27 14:13:46', '2015-05-29 12:04:47', '2015-05-25 13:25:46', '2015-05-27 13:58:43', 2, 'http://robohash.org/maximeassumendaquo.png?size=300x300', 'Walsh Forges', -136, 8, 1, 19, '2015-05-29 08:38:24', '2015-05-29 08:38:24')[0m
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('aggregate world-class mindshare', 'Nesciunt est laudantium dolor. Distinctio ut libero dolor qui neque sint.', '2015-05-28 01:47:28', '2015-05-28 10:50:03', '2015-05-20 12:11:10', '2015-05-25 10:39:39', 7, 'http://robohash.org/autvoluptatumat.png?size=300x300', 'Dayna Common', -54, 19, 1, 19, '2015-05-29 08:38:24', '2015-05-29 08:38:24')
+  [1m[36m (0.6ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('whiteboard extensible e-services', 'Facere repellat ut quis delectus omnis. Excepturi qui sapiente eveniet consequuntur in provident et.', '2015-05-26 22:30:33', '2015-05-28 14:58:44', '2015-05-20 09:02:08', '2015-05-28 10:42:20', 4, 'http://robohash.org/aspernaturmolestiaeatque.png?size=300x300', 'Jazmin Plaza', 154, -59, 1, 19, '2015-05-29 08:38:24', '2015-05-29 08:38:24')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('matrix granular communities', 'Adipisci sit vel. Quam et in omnis qui.', '2015-05-29 06:27:14', '2015-05-28 15:29:58', '2015-05-23 13:35:42', '2015-05-27 11:23:19', 4, 'http://robohash.org/quiaaliasexcepturi.png?size=300x300', 'Kathryn Lock', -18, -48, 1, 19, '2015-05-29 08:38:24', '2015-05-29 08:38:24')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Tania Pacocha', 'maximo_leuschke@streich.biz', 'Oliver', 1, '111111', 'http://robohash.org/doloribusculpaalias.png?size=300x300', '', '', '', '2015-05-27', 'Computers & Music', 'New Dewitt', 2, 2, 'Similique natus eveniet laborum. Soluta qui architecto rem nulla. Voluptatum consectetur odit illum temporibus aspernatur autem sit. Voluptatem ratione voluptatem voluptas sequi accusamus est.', '2015-05-29 08:38:24', '2015-05-29 08:38:24')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('synergize enterprise solutions', 'Eos esse recusandae debitis occaecati ut eius voluptate. Ut corporis sit doloribus et deleniti rerum. Qui odio assumenda dolorum voluptates. Minus dignissimos perferendis voluptas quam.', '2015-05-28 17:46:13', '2015-05-27 08:07:06', '2015-05-27 11:55:42', '2015-05-28 12:13:09', 1, 'http://robohash.org/enimquiavoluptatem.png?size=300x300', 'Elsa Points', -6, -10, 1, 20, '2015-05-29 08:38:24', '2015-05-29 08:38:24')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('cultivate innovative web services', 'Non sit odit iure assumenda doloribus deserunt. Et ex laudantium nam. Qui rerum est mollitia voluptate nulla quasi.', '2015-05-28 14:15:52', '2015-05-28 15:38:50', '2015-05-24 09:49:59', '2015-05-25 12:43:47', 6, 'http://robohash.org/omnisquaeomnis.png?size=300x300', 'Vada Flats', 66, 36, 1, 20, '2015-05-29 08:38:24', '2015-05-29 08:38:24')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('incubate enterprise architectures', 'Et nostrum adipisci unde quis et rerum. Molestiae et possimus vel ipsam sunt unde minima. Enim non sit. Deserunt quo non ut est eum.', '2015-05-28 10:06:07', '2015-05-27 13:00:04', '2015-05-27 11:51:14', '2015-05-27 12:28:29', 4, 'http://robohash.org/estfaciliscommodi.png?size=300x300', 'Bartell Shoal', -137, 43, 1, 20, '2015-05-29 08:38:24', '2015-05-29 08:38:24')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('revolutionize rich e-business', 'Vitae expedita est deleniti. Odio numquam sunt facilis dolore quam. Molestias veniam ex repudiandae beatae et asperiores quas.', '2015-05-28 03:26:46', '2015-05-27 07:18:04', '2015-05-21 10:13:26', '2015-05-26 11:00:12', 6, 'http://robohash.org/etsapientesunt.png?size=300x300', 'Shea Coves', 63, 40, 1, 20, '2015-05-29 08:38:24', '2015-05-29 08:38:24')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Felicity Tillman', 'cyrus.johns@ziemann.biz', 'Amira', 7, '111111', 'http://robohash.org/suscipitlaborumtenetur.png?size=300x300', '', '', '', '2015-05-28', 'Tools & Toys', 'East Abigayle', 2, 2, 'Consequatur velit omnis cumque eveniet est fugiat dolores. Delectus praesentium facilis quibusdam sed et. Expedita error quibusdam ipsa voluptates corrupti cupiditate. Repellendus consequatur quia.', '2015-05-29 08:38:24', '2015-05-29 08:38:24')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('transform viral models', 'Quas enim quae. Pariatur voluptatem veniam nisi cumque.', '2015-05-28 16:34:31', '2015-05-29 08:15:27', '2015-05-20 12:34:06', '2015-05-28 11:18:39', 9, 'http://robohash.org/doloribuscumqueest.png?size=300x300', 'Winifred Park', 43, -86, 1, 21, '2015-05-29 08:38:24', '2015-05-29 08:38:24')[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.2ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('synergize dot-com communities', 'Vero harum quo. Et eos iste. Eos perferendis voluptas aperiam repellendus aliquam culpa dicta. Veniam suscipit provident tempore ad similique qui omnis.', '2015-05-28 11:44:25', '2015-05-28 18:34:15', '2015-05-22 09:19:18', '2015-05-26 12:41:43', 2, 'http://robohash.org/delenitimaioreslaborum.png?size=300x300', 'Harris Junction', -166, -81, 1, 21, '2015-05-29 08:38:24', '2015-05-29 08:38:24')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('synthesize out-of-the-box e-business', 'Id quo nostrum non molestiae aliquid. Aut nihil debitis. Cupiditate eligendi dolor porro deserunt quia quisquam. Saepe sint animi.', '2015-05-28 09:16:29', '2015-05-28 09:01:05', '2015-05-15 12:35:58', '2015-05-25 11:28:40', 10, 'http://robohash.org/blanditiisvoluptatibusquia.png?size=300x300', 'Lessie Valleys', 168, -64, 1, 21, '2015-05-29 08:38:24', '2015-05-29 08:38:24')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('engage leading-edge channels', 'Ut suscipit sit saepe provident architecto aut. Molestiae praesentium ab est.', '2015-05-26 16:26:41', '2015-05-28 21:42:14', '2015-05-24 11:54:16', '2015-05-28 13:16:54', 1, 'http://robohash.org/magnamveritatistemporibus.png?size=300x300', 'Ottis Throughway', 82, -3, 1, 21, '2015-05-29 08:38:25', '2015-05-29 08:38:25')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users`  ORDER BY `users`.`id` ASC LIMIT 1
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  `activities`.* FROM `activities`  ORDER BY `activities`.`id` DESC LIMIT 1[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 33
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 34[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 35
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 36[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 37
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 38[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 39
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 40[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 41
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 42[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36m (0.0ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM `activities` WHERE `activities`.`id` = 43
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `activities` WHERE `activities`.`id` = 44[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT `users`.* FROM `users`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 19[0m
+  [1m[35m (0.4ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM `users` WHERE `users`.`id` = 20
+  [1m[36m (0.2ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM `users` WHERE `users`.`id` = 21[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36mParticipate Load (0.2ms)[0m  [1mSELECT `participates`.* FROM `participates`[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Ladarius Cummings', 'emie.champlin@jenkinmitham.biz', 'Abigayle', 4, '111111', 'http://robohash.org/corruptibeataeinventore.png?size=300x300', '', '', '', '2015-05-27', 'Health & Music', 'South Rose', 1, 1, 'Error voluptatem facere quam velit ut. Soluta ut explicabo qui vitae.', '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (1.0ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('visualize customized functionalities', 'Ut ut tempore. Et repellendus dolorem sapiente accusamus dolor dolores at. Et omnis illo iure.', '2015-05-29 02:26:44', '2015-05-27 01:01:09', '2015-05-28 13:38:10', '2015-05-26 10:12:31', 2, 'http://robohash.org/autquilibero.png?size=300x300', 'Schmitt Fort', -31, 0, 1, 22, '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('maximize virtual markets', 'Natus dolores corporis quo suscipit hic omnis. Omnis facere cupiditate minus aliquid nisi sapiente repellendus.', '2015-05-27 16:44:39', '2015-05-27 22:51:01', '2015-05-17 13:42:37', '2015-05-26 11:18:06', 9, 'http://robohash.org/quaevelitdicta.png?size=300x300', 'Kuphal Views', 16, -69, 1, 22, '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('matrix revolutionary methodologies', 'Suscipit atque hic voluptatum et. Commodi non eum ut vel aut aut. Consequatur alias eius vel non praesentium autem omnis. Voluptatem voluptate alias.', '2015-05-28 06:40:34', '2015-05-28 08:33:58', '2015-05-17 10:27:35', '2015-05-28 10:04:46', 7, 'http://robohash.org/quiaipsamdoloremque.png?size=300x300', 'Cali Highway', -10, 57, 1, 22, '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('visualize B2B solutions', 'Consequatur et qui eum pariatur qui laboriosam. Nihil sunt minima aperiam recusandae accusantium.', '2015-05-28 19:44:11', '2015-05-27 02:48:10', '2015-05-16 10:55:32', '2015-05-26 10:20:26', 9, 'http://robohash.org/quaeratquamnostrum.png?size=300x300', 'Thora Plaza', -142, -74, 1, 22, '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Jadyn Medhurst IV', 'bridgette@conroy.net', 'Kay', 2, '111111', 'http://robohash.org/ametnecessitatibuset.png?size=300x300', '', '', '', '2015-05-27', 'Sports, Clothing & Books', 'Lake Rosalindaberg', 1, 1, 'Dolorem pariatur sit eum quo illum. Alias quia consequatur ea ratione occaecati.', '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('whiteboard holistic e-services', 'A libero cumque quibusdam hic ut. Illum ut quo aut itaque quia esse sunt.', '2015-05-28 13:18:32', '2015-05-28 20:35:43', '2015-05-15 12:15:27', '2015-05-25 09:24:22', 3, 'http://robohash.org/eosdolorumet.png?size=300x300', 'Wava Meadows', -160, -2, 1, 23, '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (0.6ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('seize dot-com web services', 'Ut dolorum doloremque autem vitae neque. Quis et voluptas est. Est consequatur aspernatur ut pariatur excepturi.', '2015-05-29 01:40:02', '2015-05-27 16:50:31', '2015-05-25 12:13:08', '2015-05-27 12:37:15', 4, 'http://robohash.org/nihilexcepturimodi.png?size=300x300', 'Heller Course', 53, -45, 1, 23, '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('reintermediate scalable partnerships', 'Et exercitationem nihil sed autem provident necessitatibus. Temporibus quasi eligendi illo facilis aspernatur maiores. Et praesentium voluptatum.', '2015-05-26 19:12:14', '2015-05-27 14:37:02', '2015-05-25 12:58:48', '2015-05-25 10:18:03', 7, 'http://robohash.org/eosametexercitationem.png?size=300x300', 'Keshawn Haven', 158, 43, 1, 23, '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('scale killer e-business', 'Quod sed consequatur soluta commodi. Quas impedit eum voluptatem maxime. Voluptas aut id sed earum aperiam consequuntur labore. Autem ipsam id dolores necessitatibus repellat.', '2015-05-28 12:38:26', '2015-05-26 19:44:20', '2015-05-26 10:45:34', '2015-05-25 11:27:26', 4, 'http://robohash.org/avoluptatesequi.png?size=300x300', 'Amiya Inlet', -80, 33, 1, 23, '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `users` (`name`, `email`, `baby_name`, `baby_age`, `password`, `avatar`, `global_key`, `path`, `slogan`, `baby_birthday`, `baby_hobby`, `baby_school`, `sex`, `baby_sex`, `introduction`, `created_at`, `updated_at`) VALUES ('Edmond Toy', 'ethelyn@moore.org', 'Karley', 5, '111111', 'http://robohash.org/doloremqueconsequaturaccusantium.png?size=300x300', '', '', '', '2015-05-27', 'Shoes & Automotive', 'New Dakotastad', 1, 2, 'Deserunt dolores quae. Eos aut natus rerum vel qui eos dolorem. Dicta vero necessitatibus velit error ullam voluptatum.', '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('revolutionize wireless relationships', 'Quam qui praesentium quidem eum velit quos. Magni in quia. Est neque fuga similique. Amet et praesentium nesciunt aspernatur et hic.', '2015-05-28 13:31:33', '2015-05-28 14:38:04', '2015-05-23 12:24:21', '2015-05-28 10:05:14', 9, 'http://robohash.org/aliquamnihilmolestiae.png?size=300x300', 'Sylvan Lake', -138, 15, 1, 24, '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('productize integrated deliverables', 'Dolor veritatis animi cupiditate unde qui velit. Repellat earum iste architecto itaque eos laboriosam.', '2015-05-28 23:54:59', '2015-05-26 20:35:51', '2015-05-25 09:26:23', '2015-05-25 11:02:56', 6, 'http://robohash.org/voluptatemporromagnam.png?size=300x300', 'Casandra Mountains', 86, -77, 1, 24, '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (0.3ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('exploit granular interfaces', 'Adipisci officia blanditiis ducimus. Sit beatae in vel aliquam dolorem deleniti eos.', '2015-05-28 20:28:05', '2015-05-28 08:06:46', '2015-05-24 11:49:09', '2015-05-28 09:05:32', 6, 'http://robohash.org/distinctiotemporeexplicabo.png?size=300x300', 'Anya Parkways', -149, 0, 1, 24, '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO `activities` (`title`, `description`, `start_time`, `end_time`, `created_time`, `updated_time`, `max_number`, `image_url`, `location`, `location_longitude`, `location_latitude`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('revolutionize integrated solutions', 'Pariatur quae ut distinctio saepe. Deserunt illo accusamus aliquam hic dolore tempore quia. Sed qui labore cumque. Deleniti officia voluptas repudiandae numquam et.', '2015-05-27 00:55:16', '2015-05-28 20:42:30', '2015-05-25 12:57:41', '2015-05-26 11:20:43', 8, 'http://robohash.org/voluptatumetfacilis.png?size=300x300', 'Renner Passage', -145, -54, 1, 24, '2015-05-29 08:40:17', '2015-05-29 08:40:17')[0m
+  [1m[35m (0.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35m (0.1ms)[0m  COMMIT
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users`  ORDER BY `users`.`id` ASC LIMIT 1[0m
+  [1m[35mActivity Load (0.1ms)[0m  SELECT  `activities`.* FROM `activities`  ORDER BY `activities`.`id` DESC LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `participates` (`user_id`, `activity_id`, `created_at`, `updated_at`) VALUES (22, 56, '2015-05-29 08:40:17', '2015-05-29 08:40:17')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36m (0.1ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-05-29 16:48:06 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "participant"=>"22"}
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::ConfigurationError (Association named 'participates' was not found on Activity; perhaps you misspelled it?):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (19.3ms)
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-05-29 16:48:17 +0800
+Processing by ActivitiesController#filter as HTML
+  Parameters: {"user"=>"13", "participant"=>"22"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::ConfigurationError (Association named 'participates' was not found on Activity; perhaps you misspelled it?):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.5ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13" for ::1 at 2015-05-29 16:52:50 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "sponsor"=>"13"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::HasManyThroughAssociationNotFoundError (Could not find the association :participate in model Activity):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.6ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13" for ::1 at 2015-05-29 16:52:56 +0800
+Processing by ActivitiesController#filter as HTML
+  Parameters: {"user"=>"13", "sponsor"=>"13"}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::HasManyThroughAssociationNotFoundError (Could not find the association :participate in model Activity):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.2ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.2ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13" for ::1 at 2015-05-29 16:53:14 +0800
+Processing by ActivitiesController#filter as HTML
+  Parameters: {"user"=>"13", "sponsor"=>"13"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::HasManyThroughAssociationNotFoundError (Could not find the association :participate in model Activity):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (12.5ms)
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-05-29 17:00:29 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "participant"=>"22"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (user_id = '22')
+Mysql2::Error: Column 'user_id' in where clause is ambiguous: SELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (user_id = '22')
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.9ms)
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Column 'user_id' in where clause is ambiguous: SELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (user_id = '22')):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (16.5ms)
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-05-29 17:00:37 +0800
+Processing by ActivitiesController#filter as HTML
+  Parameters: {"user"=>"13", "participant"=>"22"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (user_id = '22')[0m
+Mysql2::Error: Column 'user_id' in where clause is ambiguous: SELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (user_id = '22')
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.3ms)
+
+ActiveRecord::StatementInvalid (Mysql2::Error: Column 'user_id' in where clause is ambiguous: SELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (user_id = '22')):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.3ms)
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-05-29 17:02:21 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "participant"=>"22"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id`
+Completed 200 OK in 18ms (Views: 12.6ms | ActiveRecord: 1.9ms)
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-05-29 17:02:58 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "participant"=>"22"}
+Completed 500 Internal Server Error in 38ms (ActiveRecord: 0.0ms)
+
+ActiveRecord::HasManyThroughAssociationNotFoundError (Could not find the association :participate in model Activity):
+  app/controllers/activities_controller.rb:25:in `filter'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (27.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (46.6ms)
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-05-29 17:03:37 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "participant"=>"22"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (participates.user_id = '22')[0m
+Completed 200 OK in 17ms (Views: 11.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/activities/56" for ::1 at 2015-05-29 17:05:39 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"id"=>"56"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 56 LIMIT 1
+Completed 200 OK in 6ms (Views: 0.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/22" for ::1 at 2015-05-29 17:06:20 +0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"22"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 22 LIMIT 1[0m
+Completed 200 OK in 19ms (Views: 0.5ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/login?username=Ladarius&password=[FILTERED]" for ::1 at 2015-05-29 17:21:13 +0800
+
+ActionController::RoutingError (uninitialized constant UserController):
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (6.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (70.9ms)
+
+
+Started GET "/login?username=Ladarius&password=[FILTERED]" for ::1 at 2015-05-29 17:21:38 +0800
+
+ActionController::RoutingError (uninitialized constant UserController):
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.1) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:70:in `controller_reference'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:60:in `controller'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:39:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.1) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.1) lib/action_dispatch/routing/route_set.rb:819:in `call'
+  rack (1.6.1) lib/rack/etag.rb:24:in `call'
+  rack (1.6.1) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.1) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  activerecord (4.2.1) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:649:in `call'
+  activerecord (4.2.1) lib/active_record/migration.rb:378:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:138:in `service'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/httpserver.rb:94:in `run'
+  /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/lib/ruby/2.0.0/webrick/server.rb:295:in `block in start_thread'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_route.html.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/routes/_table.html.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (18.8ms)
+
+
+Started GET "/login?username=Ladarius&password=[FILTERED]" for ::1 at 2015-05-29 17:22:32 +0800
+Processing by UsersController#login as */*
+  Parameters: {"username"=>"Ladarius", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT `users`.* FROM `users` WHERE (name = 'Ladarius' and password = '111111')
+Completed 200 OK in 19ms (Views: 11.3ms | ActiveRecord: 2.6ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Migrating to AddDistanceToActivity (20150529130406)
+  [1m[35m (19.3ms)[0m  ALTER TABLE `activities` ADD `distance` decimal
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20150529130406')
+  [1m[36m (0.7ms)[0m  [1mCOMMIT[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT `schema_migrations`.* FROM `schema_migrations`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'activities'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `activities`
+  [1m[36m (0.1ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'participates'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `participates`
+  [1m[36m (0.2ms)[0m  [1mSELECT fk.referenced_table_name as 'to_table'
+      ,fk.referenced_column_name as 'primary_key'
+      ,fk.column_name as 'column'
+      ,fk.constraint_name as 'name'
+FROM information_schema.key_column_usage fk
+WHERE fk.referenced_column_name is not null
+  AND fk.table_schema = 'ibm_demo_development'
+  AND fk.table_name = 'users'
+[0m
+  [1m[35m (0.1ms)[0m  SHOW CREATE TABLE `users`
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:42:30 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 2.0ms)
+
+NoMethodError (undefined method `/' for "000":String):
+  app/controllers/activities_controller.rb:101:in `gps2m'
+  app/controllers/activities_controller.rb:13:in `block in index'
+  app/controllers/activities_controller.rb:12:in `index'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (19.7ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:42:40 +0800
+Processing by ActivitiesController#index as HTML
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `/' for "000":String):
+  app/controllers/activities_controller.rb:101:in `gps2m'
+  app/controllers/activities_controller.rb:13:in `block in index'
+  app/controllers/activities_controller.rb:12:in `index'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (12.2ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:44:25 +0800
+Processing by ActivitiesController#index as HTML
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 3.2ms)
+
+NoMethodError (undefined method `/' for "000":String):
+  app/controllers/activities_controller.rb:101:in `gps2m'
+  app/controllers/activities_controller.rb:13:in `block in index'
+  app/controllers/activities_controller.rb:12:in `index'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (11.5ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:47:55 +0800
+Processing by ActivitiesController#index as HTML
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 500 Internal Server Error in 26ms (ActiveRecord: 2.4ms)
+
+NoMethodError (undefined method `sin' for #<ActivitiesController:0x007f977cd6ca98>):
+  app/controllers/activities_controller.rb:105:in `gps2m'
+  app/controllers/activities_controller.rb:13:in `block in index'
+  app/controllers/activities_controller.rb:12:in `index'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.3ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:49:36 +0800
+Processing by ActivitiesController#index as HTML
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 2.6ms)
+
+NoMethodError (undefined method `asin' for #<ActivitiesController:0x007f977cd26bd8>):
+  app/controllers/activities_controller.rb:105:in `gps2m'
+  app/controllers/activities_controller.rb:13:in `block in index'
+  app/controllers/activities_controller.rb:12:in `index'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (12.5ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:53:54 +0800
+Processing by ActivitiesController#index as HTML
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 2.5ms)
+
+NoMethodError (undefined method `sin' for #<ActivitiesController:0x007f977cd3dfb8>):
+  app/controllers/activities_controller.rb:105:in `gps2m'
+  app/controllers/activities_controller.rb:13:in `block in index'
+  app/controllers/activities_controller.rb:12:in `index'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (15.8ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:56:14 +0800
+Processing by ActivitiesController#index as HTML
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 22ms (Views: 3.7ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:56:25 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-29 23:56:56 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 52ms (Views: 2.9ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-30 00:03:15 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 200 OK in 19ms (Views: 4.0ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-30 00:04:38 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 19ms (Views: 3.2ms | ActiveRecord: 2.0ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-05-30 00:05:02 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 200 OK in 54ms (Views: 37.6ms | ActiveRecord: 2.3ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-06-01 11:48:35 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (2.1ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (3.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 28ms (Views: 3.2ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/activities/56" for ::1 at 2015-06-01 11:48:58 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"id"=>"56"}
+  [1m[36mActivity Load (0.9ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 56 LIMIT 1[0m
+Completed 200 OK in 6ms (Views: 0.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-06-01 11:49:06 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 5ms (Views: 2.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/activities/45" for ::1 at 2015-06-01 11:49:14 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"id"=>"45"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1[0m
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/filter/activities?user=13&participant=22" for ::1 at 2015-06-01 11:49:32 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "participant"=>"22"}
+  [1m[35mActivity Load (3.3ms)[0m  SELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (participates.user_id = '22')
+Completed 200 OK in 13ms (Views: 9.3ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13" for ::1 at 2015-06-01 11:49:39 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "sponsor"=>"13"}
+  [1m[36mActivity Load (0.7ms)[0m  [1mSELECT `activities`.* FROM `activities` WHERE (user_id = '13')[0m
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/login?username=Ladarius&password=[FILTERED]" for ::1 at 2015-06-01 11:49:50 +0800
+Processing by UsersController#login as */*
+  Parameters: {"username"=>"Ladarius", "password"=>"[FILTERED]"}
+  [1m[35mUser Load (1.7ms)[0m  SELECT `users`.* FROM `users` WHERE (name = 'Ladarius' and password = '111111')
+Completed 200 OK in 19ms (Views: 12.3ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-06-02 11:20:13 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (3.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.5ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 22ms (Views: 3.0ms | ActiveRecord: 2.6ms)
+
+
+Started POST "/activities" for ::1 at 2015-06-02 15:52:38 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2"}
+Completed 400 Bad Request in 7ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:113:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.5ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (39.5ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for ::1 at 2015-06-02 15:53:01 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 19ms (Views: 3.6ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 16:55:56 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2"}
+Completed 400 Bad Request in 7ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:113:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.0ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.2ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (22.3ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 16:56:55 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", "name"=>"11", "description"=>"1111"}
+Completed 400 Bad Request in 0ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:113:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (42.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (53.6ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 16:58:08 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", "name"=>"11"}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:114:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.9ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (14.8ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 16:58:47 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", "name"=>"11"}
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (15.4ms)[0m  [1mINSERT INTO `activities` (`created_at`, `updated_at`) VALUES ('2015-06-02 08:58:47', '2015-06-02 08:58:47')[0m
+  [1m[35m (3.0ms)[0m  COMMIT
+Completed 201 Created in 78ms (Views: 1.1ms | ActiveRecord: 20.2ms)
+
+
+Started GET "/activities" for 127.0.0.1 at 2015-06-02 17:20:36 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#index as */*
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `to_d' for nil:NilClass):
+  app/controllers/activities_controller.rb:12:in `index'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.6ms)
+
+
+Started GET "/activities?longitude=0&latitude=0" for 127.0.0.1 at 2015-06-02 17:20:48 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 28ms (Views: 3.6ms | ActiveRecord: 1.9ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 17:21:41 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2"}
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 1.8ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.1ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (11.6ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 17:22:25 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`created_at`, `updated_at`) VALUES ('2015-06-02 09:22:25', '2015-06-02 09:22:25')
+  [1m[36m (0.5ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 21ms (Views: 0.9ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 17:28:01 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2"}
+Completed 400 Bad Request in 4ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:116:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.4ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (15.1ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-02 17:28:30 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", "name"=>"1111"}
+Completed 400 Bad Request in 3ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:116:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Library/Ruby/Gems/2.0.0/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (13.4ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:16:04 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (4.9ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", ":description"=>"111", "start_time"=>"\"\"", "location_longitude"=>"\"\"", "location_latitude"=>"\"\"", "name"=>"testname"}
+Completed 400 Bad Request in 8ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:116:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.1ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.6ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:19:40 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", ":description"=>"111", "start_time"=>"\"\"", "location_longitude"=>"\"\"", "location_latitude"=>"\"\"", "name"=>"testname"}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:117:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.7ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:33:33 +0800
+
+Mysql2::Error (Can't connect to local MySQL server through socket '/tmp/mysql.sock' (2)):
+  mysql2 (0.3.18) lib/mysql2/client.rb:70:in `connect'
+  mysql2 (0.3.18) lib/mysql2/client.rb:70:in `initialize'
+  activerecord (4.2.1) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `new'
+  activerecord (4.2.1) lib/active_record/connection_adapters/mysql2_adapter.rb:18:in `mysql2_connection'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:438:in `new_connection'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:448:in `checkout_new_connection'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:422:in `acquire_connection'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:349:in `block in checkout'
+  /Users/Yan/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:348:in `checkout'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:263:in `block in connection'
+  /Users/Yan/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/monitor.rb:211:in `mon_synchronize'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:262:in `connection'
+  activerecord (4.2.1) lib/active_record/connection_adapters/abstract/connection_pool.rb:567:in `retrieve_connection'
+  activerecord (4.2.1) lib/active_record/connection_handling.rb:113:in `retrieve_connection'
+  activerecord (4.2.1) lib/active_record/connection_handling.rb:87:in `connection'
+  activerecord (4.2.1) lib/active_record/migration.rb:384:in `connection'
+  activerecord (4.2.1) lib/active_record/migration.rb:371:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `call'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:88:in `_run_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:776:in `_run_call_callbacks'
+  activesupport (4.2.1) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.1) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.1) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.1) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.1) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.1) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.1) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.1) lib/action_dispatch/middleware/static.rb:113:in `call'
+  railties (4.2.1) lib/rails/engine.rb:518:in `call'
+  railties (4.2.1) lib/rails/application.rb:164:in `call'
+  rack (1.6.1) lib/rack/lock.rb:17:in `call'
+  rack (1.6.1) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.1) lib/rack/handler/webrick.rb:89:in `service'
+  /Users/Yan/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/Yan/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/Yan/.rvm/rubies/ruby-2.2.1/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.1ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (50.8ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:33:44 +0800
+  [1m[36mActiveRecord::SchemaMigration Load (3.5ms)[0m  [1mSELECT `schema_migrations`.* FROM `schema_migrations`[0m
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", ":description"=>"111", "start_time"=>"\"\"", "location_longitude"=>"\"\"", "location_latitude"=>"\"\"", "name"=>"testname"}
+Completed 400 Bad Request in 20ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:117:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.9ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.9ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:39:20 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", ":description"=>"111", "start_time"=>"\"\"", "location_longitude"=>"\"\"", "location_latitude"=>"\"\"", "title"=>"testname"}
+Completed 400 Bad Request in 2ms (ActiveRecord: 0.0ms)
+
+ActionController::ParameterMissing (param is missing or the value is empty: activity):
+  app/controllers/activities_controller.rb:126:in `activity_params'
+  app/controllers/activities_controller.rb:74:in `create'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.0ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (34.0ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:41:10 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", ":description"=>"111", "start_time"=>"\"\"", "location_longitude"=>"\"\"", "location_latitude"=>"\"\"", "title"=>"testname"}
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.5ms)
+
+ActiveRecord::UnknownAttributeError (unknown attribute 'name' for Activity.):
+  app/controllers/activities_controller.rb:76:in `create'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.5ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.0ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:41:29 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"2", ":description"=>"111", "start_time"=>"\"\"", "location_longitude"=>"\"\"", "location_latitude"=>"\"\"", "title"=>"testname"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 2 LIMIT 1
+Completed 404 Not Found in 23ms (ActiveRecord: 3.6ms)
+
+ActiveRecord::RecordNotFound (Couldn't find User with 'id'=2):
+  app/controllers/activities_controller.rb:83:in `create'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.1ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.4ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 10:41:47 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"22", ":description"=>"111", "start_time"=>"\"\"", "location_longitude"=>"\"\"", "location_latitude"=>"\"\"", "title"=>"testname"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  `users`.* FROM `users` WHERE `users`.`id` = 22 LIMIT 1[0m
+  [1m[35m (0.1ms)[0m  BEGIN
+  [1m[36mSQL (0.8ms)[0m  [1mINSERT INTO `activities` (`title`, `user_id`, `created_at`, `updated_at`) VALUES ('testname', 22, '2015-06-04 02:41:47', '2015-06-04 02:41:47')[0m
+  [1m[35m (0.2ms)[0m  COMMIT
+Completed 201 Created in 19ms (Views: 1.0ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/activities/56?user_id=22" for 127.0.0.1 at 2015-06-04 10:56:44 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22", "id"=>"56"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 56 LIMIT 1[0m
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.7ms)
+
+NoMethodError (undefined method `to_d' for nil:NilClass):
+  app/controllers/activities_controller.rb:87:in `show'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (33.2ms)
+
+
+Started GET "/activities/56?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 10:57:24 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"56"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 56 LIMIT 1
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.2ms)
+
+NameError (undefined local variable or method `activity' for #<ActivitiesController:0x007fa9e447a230>):
+  app/controllers/activities_controller.rb:90:in `show'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (31.9ms)
+
+
+Started GET "/activities/56?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 10:57:47 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"56"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 56 LIMIT 1[0m
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.5ms)
+
+NameError (undefined local variable or method `activity' for #<ActivitiesController:0x007fa9e46bc4a8>):
+  app/controllers/activities_controller.rb:91:in `show'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.0ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.7ms)
+
+
+Started GET "/activities/56?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 10:58:04 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"56"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 56 LIMIT 1
+Completed 200 OK in 21ms (Views: 0.6ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/activities/45?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 10:58:28 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"45"}
+  [1m[36mActivity Load (0.5ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1[0m
+Completed 200 OK in 2ms (Views: 0.5ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/activities/45?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 10:58:48 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"45"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/activities/45?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 10:59:03 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"45"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/activities/45?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 10:59:06 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"45"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/activities/45?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:00:16 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"45"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1[0m
+Completed 200 OK in 12ms (Views: 0.4ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:00:45 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/activities_controller.rb:158:in `gps2m'
+  app/controllers/activities_controller.rb:18:in `block in index'
+  app/controllers/activities_controller.rb:17:in `index'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.1ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.9ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:02:05 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/activities_controller.rb:158:in `gps2m'
+  app/controllers/activities_controller.rb:18:in `block in index'
+  app/controllers/activities_controller.rb:17:in `index'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.5ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (30.4ms)
+
+
+Started GET "/activities/45?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:02:32 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"45"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:03:27 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/activities_controller.rb:158:in `gps2m'
+  app/controllers/activities_controller.rb:18:in `block in index'
+  app/controllers/activities_controller.rb:17:in `index'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.9ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.3ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:03:47 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.3ms)
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/activities_controller.rb:158:in `gps2m'
+  app/controllers/activities_controller.rb:18:in `block in index'
+  app/controllers/activities_controller.rb:17:in `index'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.3ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (29.9ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:04:14 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 2.0ms)
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/activities_controller.rb:160:in `gps2m'
+  app/controllers/activities_controller.rb:20:in `block in index'
+  app/controllers/activities_controller.rb:19:in `index'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.2ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (3.7ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (32.2ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:04:55 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 1.8ms)
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/activities_controller.rb:163:in `gps2m'
+  app/controllers/activities_controller.rb:18:in `block in index'
+  app/controllers/activities_controller.rb:17:in `index'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.9ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.4ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (28.0ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:05:41 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (0.3ms)[0m  [1mSELECT `activities`.* FROM `activities`[0m
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 1.7ms)
+
+NoMethodError (undefined method `*' for nil:NilClass):
+  app/controllers/activities_controller.rb:165:in `gps2m'
+  app/controllers/activities_controller.rb:18:in `block in index'
+  app/controllers/activities_controller.rb:17:in `index'
+
+
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_source.erb (2.9ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.6ms)
+  Rendered /Users/Yan/.rvm/gems/ruby-2.2.1/gems/actionpack-4.2.1/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (27.9ms)
+
+
+Started GET "/activities?user_id=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:06:56 +0800
+Processing by ActivitiesController#index as */*
+  Parameters: {"user_id"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.2ms)[0m  SELECT `activities`.* FROM `activities`
+Completed 200 OK in 6ms (Views: 2.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/filter/activities?user=13&participant=22&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:07:57 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "participant"=>"22", "longitude"=>"0", "latitude"=>"0"}
+  [1m[36mActivity Load (1.2ms)[0m  [1mSELECT `activities`.* FROM `activities` INNER JOIN `participates` ON `participates`.`activity_id` = `activities`.`id` WHERE (participates.user_id = '22')[0m
+Completed 200 OK in 10ms (Views: 0.5ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:08:13 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "sponsor"=>"13", "longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.4ms)[0m  SELECT `activities`.* FROM `activities` WHERE (user_id = '13')
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/login?username=Ladarius&password=[FILTERED]" for 127.0.0.1 at 2015-06-04 11:08:29 +0800
+Processing by UsersController#login as */*
+  Parameters: {"username"=>"Ladarius", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT `users`.* FROM `users` WHERE (name = 'Ladarius' and password = '111111')[0m
+Completed 200 OK in 14ms (Views: 9.7ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users/22" for 127.0.0.1 at 2015-06-04 11:08:32 +0800
+Processing by UsersController#show as */*
+  Parameters: {"id"=>"22"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 22 LIMIT 1
+Completed 200 OK in 2ms (Views: 0.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/activities/45?user_id=22?&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:10:54 +0800
+Processing by ActivitiesController#show as */*
+  Parameters: {"user_id"=>"22?", "longitude"=>"0", "latitude"=>"0", "id"=>"45"}
+  [1m[36mActivity Load (0.2ms)[0m  [1mSELECT  `activities`.* FROM `activities` WHERE `activities`.`id` = 45 LIMIT 1[0m
+Completed 200 OK in 14ms (Views: 0.4ms | ActiveRecord: 1.8ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 11:12:04 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"22", "description"=>"测试", "end_time"=>"2015-05-29T02:26:44.000Z", "start_time"=>"2015-05-29T02:26:44.000Z", "location"=>"测试地址", "location_latitude"=>"0", "location_longitude"=>"0", "title"=>"测试"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 22 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`description`, `start_time`, `end_time`, `location`, `title`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('测试', '2015-05-29 02:26:44', '2015-05-29 02:26:44', '测试地址', '测试', 0, 22, '2015-06-04 03:12:04', '2015-06-04 03:12:04')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 18ms (Views: 0.7ms | ActiveRecord: 2.1ms)
+
+
+Started POST "/activities" for 127.0.0.1 at 2015-06-04 11:12:43 +0800
+Processing by ActivitiesController#create as */*
+  Parameters: {"user_id"=>"22", "description"=>"测试", "end_time"=>"2015-05-29T02:26:44.000Z", "start_time"=>"2015-05-29T02:26:44.000Z", "location"=>"测试地址", "latitude"=>"0", "longitude"=>"0", "title"=>"测试"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  `users`.* FROM `users` WHERE `users`.`id` = 22 LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO `activities` (`description`, `start_time`, `end_time`, `location`, `location_latitude`, `location_longitude`, `title`, `acceptable`, `user_id`, `created_at`, `updated_at`) VALUES ('测试', '2015-05-29 02:26:44', '2015-05-29 02:26:44', '测试地址', 0, 0, '测试', 0, 22, '2015-06-04 03:12:43', '2015-06-04 03:12:43')
+  [1m[36m (0.3ms)[0m  [1mCOMMIT[0m
+Completed 201 Created in 3ms (Views: 0.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/filter/activities?user=13&sponsor=13&longitude=0&latitude=0" for 127.0.0.1 at 2015-06-04 11:24:56 +0800
+Processing by ActivitiesController#filter as */*
+  Parameters: {"user"=>"13", "sponsor"=>"13", "longitude"=>"0", "latitude"=>"0"}
+  [1m[35mActivity Load (0.3ms)[0m  SELECT `activities`.* FROM `activities` WHERE (user_id = '13')
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.3ms)

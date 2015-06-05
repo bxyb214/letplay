@@ -1,0 +1,19 @@
+source 'https://ruby.taobao.org/'
+
+ruby '2.2.1'
+
+gem 'rails', '~> 4.2.1'
+
+gem 'rails-api'
+
+gem 'spring', :group => :development
+
+group :development do
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'ibm_db'
+end
+
+gem 'faker'
